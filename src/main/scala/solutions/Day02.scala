@@ -29,7 +29,7 @@ class Day02 extends Day {
     report
       .zip(report.drop(1))
       .forall((v1, v2) =>
-        (v1 - v2).abs >= 1 && (v1 - v2).abs <= 3 && ((sign == 1) == (v1 > v2))
+        (1 to 3).contains((v1 - v2).abs) && ((sign == 1) == (v1 > v2))
       )
   }
 
