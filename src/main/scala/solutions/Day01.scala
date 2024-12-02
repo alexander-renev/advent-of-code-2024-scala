@@ -15,7 +15,7 @@ class Day01 extends Day {
 
   override def solvePart2(input: String): Unit = {
     val (list1, list2) = parseInput(input)
-    val counts = list2.groupBy(v => v).view.mapValues(_.length)
+    val counts = list2.groupBy(identity).view.mapValues(_.length)
     val similarity = list1.map(v => v * counts.getOrElse(v, 0)).sum
     println(f"Similarity is $similarity")
   }
