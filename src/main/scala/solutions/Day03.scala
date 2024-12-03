@@ -27,8 +27,8 @@ class Day03 extends Day {
     val (sum, _) = commands.foldLeft((0, true))((counter, value) => {
       val (total, enabled) = counter
       value match {
-        case Multiply(arg1, arg2) =>
-          if (enabled) (total + arg1 * arg2, enabled) else (total, enabled)
+        case Multiply(_, _) =>
+          if (enabled) (total + value.product, enabled) else (total, enabled)
         case Toggle(flag) => (total, flag)
       }
     })
