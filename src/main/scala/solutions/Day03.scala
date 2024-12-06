@@ -3,15 +3,17 @@ package solutions
 
 import common.{Day, Input}
 
-sealed trait Command {
-  def product: Int = 0
-}
-case class Multiply(arg1: Int, arg2: Int) extends Command {
-  override def product: Int = arg1 * arg2
-}
-case class Toggle(enabled: Boolean) extends Command
-
 class Day03 extends Day {
+  sealed trait Command {
+    def product: Int = 0
+  }
+
+  case class Multiply(arg1: Int, arg2: Int) extends Command {
+    override def product: Int = arg1 * arg2
+  }
+
+  case class Toggle(enabled: Boolean) extends Command
+
   override val input: Input = new Input(3) {
     override def getPart2Test: String = getInput("test-2")
   }

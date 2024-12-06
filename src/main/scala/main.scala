@@ -1,8 +1,8 @@
 package com.adventofcode
 
-import solutions.*
+import solutions._
 
 @main
 def main(): Unit = {
-  Day05().solve()
+  Day06().solve()
 }
