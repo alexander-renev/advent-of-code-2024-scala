@@ -3,8 +3,6 @@ package solutions
 
 import common.{Day, Input}
 
-import scala.annotation.tailrec
-
 class Day07 extends Day {
   override val input: Input = new Input(7)
 
@@ -28,26 +26,24 @@ class Day07 extends Day {
     val source = parseInput(input)
     source
       .filter(s =>
-        possibleResults(s._2.toList.tail, List(s._2(0)), operations)
+        possibleResults(s._2.toList, operations)
           .contains(s._1)
       )
       .map(_._1)
       .sum
   }
 
-  @tailrec
   private def possibleResults(
       operands: List[BigInt],
-      results: List[BigInt],
       operations: List[(BigInt, BigInt) => BigInt]
-  ): List[BigInt] = {
-    if (operands.isEmpty) {
-      results
-    } else {
-      val head = operands.head
-      val newResults = results.flatMap(r => operations.map(op => op(r, head)))
-      possibleResults(operands.tail, newResults, operations)
-    }
+  ) = {
+    operands.tail
+      .foldLeft(List(operands.head))(
+        (
+            results,
+            operand
+        ) => for (r <- results; op <- operations) yield op(r, operand)
+      )
   }
 
   private def parseInput(input: String) = {
