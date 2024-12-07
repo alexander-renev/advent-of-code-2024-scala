@@ -28,7 +28,7 @@ class Day07 extends Day {
     val source = parseInput(input)
     source
       .filter(s =>
-        possibleResults(s._2.toList, List.empty[BigInt], operations)
+        possibleResults(s._2.toList.tail, List(s._2(0)), operations)
           .contains(s._1)
       )
       .map(_._1)
@@ -45,9 +45,7 @@ class Day07 extends Day {
       results
     } else {
       val head = operands.head
-      val newResults =
-        if (results.isEmpty) List(head)
-        else results.flatMap(r => operations.map(op => op(r, head)))
+      val newResults = results.flatMap(r => operations.map(op => op(r, head)))
       possibleResults(operands.tail, newResults, operations)
     }
   }
