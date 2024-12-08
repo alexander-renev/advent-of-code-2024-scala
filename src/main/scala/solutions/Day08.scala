@@ -53,17 +53,15 @@ class Day08 extends Day {
 
   private def antinodes2(pos1: Position, pos2: Position, boardSize: Range) = {
     val delta = pos2 - pos1
-    Seq.unfold(pos2)(p => {
-      val next = p + delta
-      if (boardSize.contains(next.x) && boardSize.contains(next.y))
-        Some(next, next)
+    Seq.unfold(pos2)(p =>
+      if (boardSize.contains(p.x) && boardSize.contains(p.y))
+        Some(p, p + delta)
       else None
-    }) ++ Seq.unfold(pos1)(p => {
-      val next = p - delta
-      if (boardSize.contains(next.x) && boardSize.contains(next.y))
-        Some(next, next)
+    ) ++ Seq.unfold(pos1)(p =>
+      if (boardSize.contains(p.x) && boardSize.contains(p.y))
+        Some(p, p - delta)
       else None
-    }) ++ Seq(pos1, pos2)
+    )
   }
 
   private def parseInput(input: String) = {
