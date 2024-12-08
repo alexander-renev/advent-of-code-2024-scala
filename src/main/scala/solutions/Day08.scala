@@ -13,9 +13,9 @@ class Day08 extends Day {
       .filter(_ != '.')
       .flatMap(ch => {
         val antennas = positions(ch)
-        antennas.toList
+        antennas.toArray
           .combinations(2)
-          .map(l => (l.head, l.tail.head))
+          .map(l => (l(0), l(1)))
           .filter(p => p._1 != p._2)
           .flatMap(p => Seq(antinode1(p._1, p._2), antinode1(p._2, p._1)))
           .filter(board.contains)
@@ -35,9 +35,9 @@ class Day08 extends Day {
       .filter(_ != '.')
       .flatMap(ch => {
         val antennas = positions(ch)
-        antennas.toList
+        antennas.toArray
           .combinations(2)
-          .map(l => (l.head, l.tail.head))
+          .map(l => (l(0), l(1)))
           .filter(p => p._1 != p._2)
           .flatMap(p => antinodes2(p._1, p._2, range))
           .filter(board.contains)
