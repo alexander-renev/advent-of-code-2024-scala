@@ -16,6 +16,15 @@ case class Position(x: Int, y: Int) {
     Seq.fill(count - 1) { direction }.scanLeft(this)(_ + _)
   }
 
+  def adjacent(): Seq[Position] = {
+    Seq(
+      Position(x, y + 1),
+      Position(x, y - 1),
+      Position(x + 1, y),
+      Position(x - 1, y)
+    )
+  }
+
   override def toString: String = f"($x,$y)"
 }
 

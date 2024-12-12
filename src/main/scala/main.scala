@@ -4,5 +4,5 @@ import solutions._
 
 @main
 def main(): Unit = {
-  Day11().solve()
+  Day12().solve()
 }
