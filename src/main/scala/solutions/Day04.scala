@@ -1,6 +1,7 @@
 package com.adventofcode
 package solutions
 
+import scala.math.Integral.Implicits._
 import common.{Day, Input}
 
 case class Position(x: Int, y: Int) {
@@ -10,6 +11,18 @@ case class Position(x: Int, y: Int) {
 
   def -(other: Position): Position = {
     Position(x - other.x, y - other.y)
+  }
+
+  def /(other: Position): Option[Int] = {
+    val (quotientX, remainderX) = x /% other.x
+    val (quotientY, remainderY) = x /% other.x
+    if (remainderX != 0 || remainderY != 0) {
+      None
+    } else if (quotientX != quotientY) {
+      None
+    } else {
+      Some(quotientX)
+    }
   }
 
   def range(direction: Position, count: Int): Iterable[Position] = {
