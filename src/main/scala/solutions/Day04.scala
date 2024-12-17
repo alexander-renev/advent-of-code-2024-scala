@@ -38,6 +38,18 @@ case class Position(x: Int, y: Int) {
     )
   }
 
+  def toDirection: String = {
+    if (x > 0) {
+      ">"
+    } else if (x < 0) {
+      "<"
+    } else if (y > 0) {
+      "V"
+    } else {
+      "^"
+    }
+  }
+
   override def toString: String = f"($x,$y)"
 }
 
