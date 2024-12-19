@@ -13,8 +13,8 @@ trait Day {
     solvePart2(input.getPart2Test)
 
     println("Real data")
-    //solvePart1(input.getPart1Real)
-    //solvePart2(input.getPart2Real)
+    solvePart1(input.getPart1Real)
+    solvePart2(input.getPart2Real)
   }
 
   protected def parseLineGroups(input: String): Array[Array[String]] = {
