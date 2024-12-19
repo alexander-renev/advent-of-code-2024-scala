@@ -53,6 +53,13 @@ case class Position(x: Int, y: Int) {
   override def toString: String = f"($x,$y)"
 }
 
+object Position {
+  def fromString(line: String, sep: Char = ','): Position = {
+    val parts = line.split(sep)
+    Position(parts(0).toInt, parts(1).toInt)
+  }
+}
+
 class Day04 extends Day {
   override val input: Input = new Input(4)
   private val directions =
