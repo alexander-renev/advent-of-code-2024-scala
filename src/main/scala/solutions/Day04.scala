@@ -4,7 +4,7 @@ package solutions
 import scala.math.Integral.Implicits._
 import common.{Day, Input}
 
-case class Position(x: Int, y: Int) {
+case class Position(x: Int, y: Int) extends Ordered[Position] {
   def +(other: Position): Position = {
     Position(x + other.x, y + other.y)
   }
@@ -38,6 +38,10 @@ case class Position(x: Int, y: Int) {
     )
   }
 
+  def manhattanTo(other: Position): Int = {
+    (other.x - x).abs + (other.y - y).abs
+  }
+
   def toDirection: String = {
     if (x > 0) {
       ">"
@@ -51,6 +55,14 @@ case class Position(x: Int, y: Int) {
   }
 
   override def toString: String = f"($x,$y)"
+
+  override def compare(that: Position): Int = {
+    if (x == that.x) {
+      y.compare(that.y)
+    } else {
+      x.compare(that.x)
+    }
+  }
 }
 
 object Position {
