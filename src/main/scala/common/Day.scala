@@ -29,4 +29,8 @@ trait Day {
       })
       .toArray
   }
+
+  protected def getLines(input: String): Array[String] = {
+    input.lines().toScala(Array)
+  }
 }
